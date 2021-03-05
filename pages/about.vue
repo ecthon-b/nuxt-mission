@@ -2,8 +2,8 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">nuxt-mission</h1>
-      <Nuxt-link to="/about">About</Nuxt-link>
+      <h1 class="title">About</h1>
+      <Nuxt-link to="/">Home</Nuxt-link>
     </div>
   </div>
 </template>
