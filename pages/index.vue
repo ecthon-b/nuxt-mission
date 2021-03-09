@@ -4,15 +4,35 @@
       <Logo />
       <h1 class="title">nuxt-mission</h1>
       <Nuxt-link to="/about">About</Nuxt-link>
+      <ul>
+        <li v-for="planet in planets" :key="planet.slug">
+          <NuxtLink :to="planet.slug">{{ planet.title }}</NuxtLink>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  async fetch() {
+    this.planets = await fetch('https://api.nuxtjs.dev/planets').then((res) =>
+      res.json()
+    )
+  },
+  data() {
+    return {
+      planets: [],
+    }
+  },
+}
 </script>
 
 <style>
+ul {
+  list-style: none;
+  padding: 0;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;
