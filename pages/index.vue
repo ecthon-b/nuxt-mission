@@ -3,8 +3,12 @@
     <div>
       <Logo />
       <h1 class="title">nuxt-mission</h1>
-      <Nuxt-link to="/about">About</Nuxt-link>
-      <ul>
+      <p v-if="$fetchState.pending">Fetching planets....</p>
+      <p v-else-if="$fetchState.error">Error! While Fetching planets</p>
+      <ul v-else>
+        <li>
+          <NuxtLink to="/nuxt">Nuxt</NuxtLink>
+        </li>
         <li v-for="planet in planets" :key="planet.slug">
           <NuxtLink :to="planet.slug">{{ planet.title }}</NuxtLink>
         </li>
@@ -15,6 +19,7 @@
 
 <script>
 export default {
+  layout: 'home',
   async fetch() {
     this.planets = await fetch('https://api.nuxtjs.dev/planets').then((res) =>
       res.json()
